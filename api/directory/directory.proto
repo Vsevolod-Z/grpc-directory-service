@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package directory;
+
+option go_package = ".directory;directory";
+message FileInfo {
+    string name = 1;
+    int64 size = 2;
+}
+
+message DirectoryRequest{
+    string path = 1;
+}
+
+message DirectoryResponse{
+    bool exists = 1;
+    repeated FileInfo files = 2;
+}
+
+service DirectoryService {
+    rpc GetDirectoryInfo(DirectoryRequest) returns (DirectoryResponse) {}
+  }
